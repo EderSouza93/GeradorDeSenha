@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Gerador de senha</h1>
+    <p>Utilize nosso gerador online para criar uma senha fote e segura</p>
+
+    <input type="text" name="password" id="password" />
+
+    <input type="range" 
+    name="password-length" 
+    id="password-length" 
+    value="16" 
+    min="4" 
+    max="64" />
+
+    <button>Copiar senha</button>
+    
+    <script>
+        // **variável criada no escopo global com o valor 16 que é default
+        let passwordLength = 16
+        //função que gera a senha aleatória
+        function generatePassword() {
+            // caracteres que serão utilizados para gerar a senha
+            const chars = "abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789?!@&*()[]"
+
+            // variável para armazenar a senha gerada
+            let password = ""
+
+            // loop para adicionar caracteres aleatórios à senha
+            for (let i = 0; i < passwordLength; i++){ 
+                /// escolhe um número aleatório entre 0 e o comprimento da string "chars"
+                const randomNumber = Math.floor(Math.random() * chars.length)
+                // adiciona um caractere aleatório à senha
+                password += chars.substring(randomNumber, randomNumber + 1)
+            }
+            // Imputa a senha no campo password
+            const imputeEl = document.querySelector("#password")
+            inputEl.value = password
+
+        }
+
+        // Seleciona o id pelo DOM
+        const passwordLengthEl = document.querySelector("#password-length")
+        // Evento de arrastar o range, função seleciona o valor e executa a função generate password. 
+        passwordLengthEl.addEventListener("imput", function () {
+            passwordLength = passwordLengthEl.value
+
+            //**Após isso cria a variável no escopo global
+        })
+
+         // chama a função para gerar a senha 
+        generatePassword()
+    </script>
+        
+    </body>
+</html>
