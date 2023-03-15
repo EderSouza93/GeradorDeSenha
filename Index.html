@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Gerador de senha</h1>
-    <p>Utilize nosso gerador online para criar uma senha fote e segura</p>
+    <p>Utilize nosso gerador online para criar uma senha forte e segura</p>
 
     <input type="text" name="password" id="password" />
 
@@ -48,7 +48,7 @@
         // Seleciona o id pelo DOM
         const passwordLengthEl = document.querySelector("#password-length")
         // Evento de arrastar o range, função seleciona o valor e executa a função generate password. 
-        passwordLengthEl.addEventListener("imput", function () {
+        passwordLengthEl.addEventListener("input", function () {
             passwordLength = passwordLengthEl.value
             generatePassword()
 
