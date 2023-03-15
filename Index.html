@@ -19,9 +19,12 @@
     min="4" 
     max="64" />
 
-    <button>Copiar senha</button>
+    <button id="copy">Copiar senha</button>
     
     <script>
+        // Imputa a senha no campo password
+        // variável precisa está no escopo global para ser utilizada na função de copiar
+        const imputEl = document.querySelector("#password")
         // **variável criada no escopo global com o valor 16 que é default
         let passwordLength = 16
         //função que gera a senha aleatória
@@ -39,11 +42,15 @@
                 // adiciona um caractere aleatório à senha
                 password += chars.substring(randomNumber, randomNumber + 1)
             }
-            // Imputa a senha no campo password
-            const imputEl = document.querySelector("#password")
+            
             imputEl.value = password
 
         }
+        //Função que utiliza a api do próprio navegador para copiar a senha
+        function copy(){
+            navigator.clipboard.writeText(inputEl.value)
+        }
+
 
         // Seleciona o id pelo DOM
         const passwordLengthEl = document.querySelector("#password-length")
@@ -54,6 +61,11 @@
 
             //**Após isso cria a variável no escopo global
         })
+
+        // define a variável que armazenará o id do botão
+        const copyBottonEl = document.querySelector("#copy")
+        //registra o evento realizado (click) e chama a função copiar
+        copyBottonEl.addEventListener("click", copy)
 
          // chama a função para gerar a senha 
         generatePassword()
