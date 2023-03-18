@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Inter&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <title>Gerador de Senha</title>
@@ -17,9 +17,22 @@
         <h1 class="title">Gerador de senha</h1>
         <p class="subtitle">Utilize nosso gerador online para criar uma senha forte e segura</p>
     </section>
-        <input type="text" name="password" id="password" />
 
-        <input type="range" 
+    <section class="box">
+        <div class="password">
+            <div class="text">
+                <input type="text" name="password" id="password" />
+            </div>
+            <div class="actions">
+                <button id="copy2">C</button>
+                <button id="renew">R</button>
+            </div>
+        </div>
+    </section>
+    
+
+
+    <input type="range" 
         name="password-length" 
         id="password-length" 
         value="16" 
