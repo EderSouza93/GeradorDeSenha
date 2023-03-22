@@ -76,19 +76,31 @@
     
 
 
-    
-        <button id="copy2">Copiar senha</button>
+        <div class="submit">
+            <button id="copy2">Copiar senha</button>
+        </div>  
     </main> 
     <script>
         // Imputa a senha no campo password
         // variável precisa está no escopo global para ser utilizada na função de copiar
         const inputEl = document.querySelector("#password")
+        const uppercasecheckEl = document.querySelector("#uppercase-check")
         // **variável criada no escopo global com o valor 16 que é default
         let passwordLength = 16
         //função que gera a senha aleatória
         function generatePassword() {
             // caracteres que serão utilizados para gerar a senha
-            const chars = "abcdefghjklmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789?!@&*()[]"
+            let chars = "abcdefghjklmnpqrstuvwxyz"
+
+            const upperCaseChars = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+            const numberChars = "123456789"
+            const symbolChars = "?!@&*()[]"
+
+            chars += upperCaseChars
+
+            chars += numberChars
+
+            chars += symbolChars
 
             // variável para armazenar a senha gerada
             let password = ""
