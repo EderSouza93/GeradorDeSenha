@@ -35,7 +35,11 @@
             </div>
         </div>
         <div class="security-indicator">
-            <div id="security-indicator-bar" class="bar" style="width:90%"></div>
+            <div 
+                id="security-indicator-bar" 
+                class="bar" 
+                style="width:90%">
+            </div>
         </div>
     </section>
 
@@ -84,7 +88,10 @@
         // Imputa a senha no campo password
         // variável precisa está no escopo global para ser utilizada na função de copiar
         const inputEl = document.querySelector("#password")
-        const uppercasecheckEl = document.querySelector("#uppercase-check")
+        const upperCaseCheckEl = document.querySelector("#uppercase-check")
+        const numberCheckEl = document.querySelector("#number-check")
+        const symbolCheckEl = document.querySelector("#symbol-check")
+        const securityIndicatorBar = document.querySelector("#security-indicator-bar")
         // **variável criada no escopo global com o valor 16 que é default
         let passwordLength = 16
         //função que gera a senha aleatória
@@ -96,17 +103,23 @@
             const numberChars = "123456789"
             const symbolChars = "?!@&*()[]"
 
-            chars += upperCaseChars
+            if(upperCaseCheckEl.checked) {
+                chars += upperCaseChars
+            }
+            
+            if(numberCheckEl.checked) {
+                chars += numberChars
+            }
 
-            chars += numberChars
-
-            chars += symbolChars
+            if(symbolCheckEl.checked) {
+                chars += symbolChars
+            }  
 
             // variável para armazenar a senha gerada
             let password = ""
 
             // loop para adicionar caracteres aleatórios à senha
-            for (let i = 0; i < passwordLength; i++){ 
+            for (let i = 0; i < passwordLength; i++) { 
                 /// escolhe um número aleatório entre 0 e o comprimento da string "chars"
                 const randomNumber = Math.floor(Math.random() * chars.length)
                 // adiciona um caractere aleatório à senha
@@ -115,22 +128,34 @@
             
             inputEl.value = password
 
+            calculateQuality()
+        }
+
+        function calculateQuality(){
+            // 20% -> critico => 100% algo safe
+            // 64/64 = 1 => 100%
+
+            const percent = Math.round(passwordLength / 64) * 100
         }
         //Função que utiliza a api do próprio navegador para copiar a senha
         function copy(){
             navigator.clipboard.writeText(inputEl.value)
         }
 
-
         // Seleciona o id pelo DOM
         const passwordLengthEl = document.querySelector("#password-length")
         // Evento de arrastar o range, função seleciona o valor e executa a função generate password. 
         passwordLengthEl.addEventListener("input", function () {
             passwordLength = passwordLengthEl.value
+            document.querySelector("#password-legth-text").innerText =
+             passwordLength
             generatePassword()
-
-            //**Após isso cria a variável no escopo global
+         //**Após isso cria a variável no escopo global
         })
+        
+        upperCaseCheckEl.addEventListener("click", generatePassword)
+        numberCheckEl.addEventListener("click", generatePassword)
+        symbolCheckEl.addEventListener("click", generatePassword)
 
         // Como estamos fazendo em duas etapas podemos retirar a variável e o evento da função já investir em event listener.
         document.querySelector("#copy1").addEventListener("click", copy)
