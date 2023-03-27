@@ -37,8 +37,7 @@
         <div class="security-indicator">
             <div 
                 id="security-indicator-bar" 
-                class="bar" 
-                style="width:90%">
+                class="bar critical">
             </div>
         </div>
     </section>
@@ -91,7 +90,7 @@
         const upperCaseCheckEl = document.querySelector("#uppercase-check")
         const numberCheckEl = document.querySelector("#number-check")
         const symbolCheckEl = document.querySelector("#symbol-check")
-        const securityIndicatorBar = document.querySelector("#security-indicator-bar")
+        const securityIndicatorBarEl = document.querySelector("#security-indicator-bar")
         // **variável criada no escopo global com o valor 16 que é default
         let passwordLength = 16
         //função que gera a senha aleatória
@@ -131,11 +130,14 @@
             calculateQuality()
         }
 
-        function calculateQuality(){
+        function calculateQuality() {
             // 20% -> critico => 100% algo safe
             // 64/64 = 1 => 100%
 
-            const percent = Math.round(passwordLength / 64) * 100
+            const percent = Math.round((passwordLength / 64) * 100)
+
+
+            securityIndicatorBarEl.style.width = `${percent}%`
         }
         //Função que utiliza a api do próprio navegador para copiar a senha
         function copy(){
