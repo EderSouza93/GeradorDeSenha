@@ -134,7 +134,13 @@
             // 20% -> critico => 100% algo safe
             // 64/64 = 1 => 100%
 
-            const percent = Math.round((passwordLength / 64) * 100)
+            // T*0.15 + M*0.25 + N*0,25 + S*0.35 = 100
+
+            const percent = Math.round(
+                (passwordLength / 64) * 100 * 0.15 + 
+                    (upperCaseCheckEl.checked ? 25 : 0) + 
+                    (numberCheckEl.checked ? 25 : 0) +
+                    (symbolCheckEl.checked ? 35 : 0) )
 
 
             securityIndicatorBarEl.style.width = `${percent}%`
