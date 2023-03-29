@@ -35,10 +35,7 @@
             </div>
         </div>
         <div class="security-indicator">
-            <div 
-                id="security-indicator-bar" 
-                class="bar critical">
-            </div>
+            <div id="security-indicator-bar" class="bar"></div>
         </div>
     </section>
 
@@ -137,13 +134,32 @@
             // T*0.15 + M*0.25 + N*0,25 + S*0.35 = 100
 
             const percent = Math.round(
-                (passwordLength / 64) * 100 * 0.15 + 
-                    (upperCaseCheckEl.checked ? 25 : 0) + 
+                (passwordLength / 64) * 25 + 
+                    (upperCaseCheckEl.checked ? 15 : 0) + 
                     (numberCheckEl.checked ? 25 : 0) +
-                    (symbolCheckEl.checked ? 35 : 0) )
+                    (symbolCheckEl.checked ? 35 : 0) );
 
 
             securityIndicatorBarEl.style.width = `${percent}%`
+
+            console.log(percent)
+            
+            if (percent > 69) {
+                //safe
+                securityIndicatorBarEl.classList.remove("critical")
+                securityIndicatorBarEl.classList.remove("warning")
+                securityIndicatorBarEl.classList.add("safe")
+            } else if (percent > 50) {
+                //warning
+                securityIndicatorBarEl.classList.remove("critical")
+                securityIndicatorBarEl.classList.add("warning")
+                securityIndicatorBarEl.classList.remove("safe")
+            } else {
+                //critical
+                securityIndicatorBarEl.classList.add("critical")
+                securityIndicatorBarEl.classList.remove("warning")
+                securityIndicatorBarEl.classList.remove("safe")
+            }
         }
         //Função que utiliza a api do próprio navegador para copiar a senha
         function copy(){
