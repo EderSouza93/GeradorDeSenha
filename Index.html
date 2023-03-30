@@ -160,6 +160,12 @@
                 securityIndicatorBarEl.classList.remove("warning")
                 securityIndicatorBarEl.classList.remove("safe")
             }
+
+            if (percent >= 100) {
+                securityIndicatorBarEl.classList.add("completed")
+            } else {
+                securityIndicatorBarEl.classList.remove("completed")
+            }
         }
         //Função que utiliza a api do próprio navegador para copiar a senha
         function copy(){
