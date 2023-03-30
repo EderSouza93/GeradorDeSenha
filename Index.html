@@ -125,6 +125,7 @@
             inputEl.value = password
 
             calculateQuality()
+            calculateFontSize()
         }
 
         function calculateQuality() {
@@ -142,7 +143,7 @@
 
             securityIndicatorBarEl.style.width = `${percent}%`
 
-            console.log(percent)
+            
             
             if (percent > 69) {
                 //safe
@@ -165,6 +166,26 @@
                 securityIndicatorBarEl.classList.add("completed")
             } else {
                 securityIndicatorBarEl.classList.remove("completed")
+            }
+        }
+
+        function calculateFontSize(){
+            if (passwordLength > 45) {
+                inputEl.classList.remove("font-sm")
+                inputEl.classList.remove("font-xs")
+                inputEl.classList.add("font-xxs")
+            } else if (passwordLength > 32) {
+                inputEl.classList.remove("font-sm")
+                inputEl.classList.add("font-xs")
+                inputEl.classList.remove("font-xxs")
+            } else if (passwordLength > 22) {
+                inputEl.classList.add("font-sm")
+                inputEl.classList.remove("font-xs")
+                inputEl.classList.remove("font-xxs")
+            } else{
+                inputEl.classList.remove("font-sm")
+                inputEl.classList.remove("font-xs")
+                inputEl.classList.remove("font-xxs")
             }
         }
         //Função que utiliza a api do próprio navegador para copiar a senha
